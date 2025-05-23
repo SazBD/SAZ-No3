@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>海洋垃圾漂浮</title>
+    <link rel="stylesheet" href="nextpage.css" />
+    <link rel="stylesheet" href="bubble.css" />
+  </head>
+  <body>
+    <div id="ocean">
+      <video autoplay muted loop id="background-video">
+        <source src="img/ocean.mp4" type="video/mp4" />
+        您的浏览器不支持视频播放。
+      </video>
+      <div class="garbage-wrapper" style="left: 15%">
+        <div
+          class="garbage"
+          data-info="塑料瓶:塑料瓶进入海洋后，
+        被生物误食或缠绕致死，释放有毒化学物质，并逐渐
+        分解为微塑料，通过食物链威胁生态和人类健康，每
+        年数百万吨污染加剧生态危机。"
+          style="background-image: url('img/bottle.png')"
+        ></div>
+      </div>
+      <div class="garbage-wrapper" style="left: 35%">
+        <div
+          class="garbage"
+          data-info="拖鞋:橡胶拖鞋长期滞留海洋，释放化学毒
+        素，被生物误食后引发中毒或死亡，分解为微塑料渗入食
+        物链，破坏生态平衡，加剧海洋污染。"
+          style="background-image: url('img/tx.png')"
+        ></div>
+      </div>
+      <div class="garbage-wrapper" style="left: 55%">
+        <div
+          class="garbage"
+          data-info="易拉罐:易拉罐进入海洋后，锋利边缘易割
+        伤海洋生物，腐蚀释放重金属及化学毒素，塑料涂层分解
+        为微塑料，污染食物链，威胁生态并加剧垃圾堆积问题。"
+          style="background-image: url('img/ylg.png')"
+        ></div>
+      </div>
+      <div class="garbage-wrapper" style="left: 75%">
+        <div
+          class="garbage"
+          data-info="酒瓶:酒瓶（多为玻璃）在海洋中难以降解，
+        破碎后尖锐碎片易割伤生物或致误食死亡；金属瓶盖腐蚀
+        释放重金属，塑料封膜分解为微塑料，污染食物链并破坏栖息地。"
+          style="background-image: url('img/jp.png')"
+        ></div>
+      </div>
+    </div>
+    <div id="fall-text">
+      <img src="img/w1.png" class="fall-img" alt="w1" />
+      <img src="img/w2.png" class="fall-img" alt="w2" />
+      <img src="img/w3.png" class="fall-img" alt="w3" />
+      <img src="img/w4.png" class="fall-img" alt="w4" />
+      <img src="img/w5.png" class="fall-img" alt="w5" />
+    </div>
+    <button id="salvage-btn">打捞</button>
+    <div id="pull-rope">
+      <div id="rope"></div>
+      <div id="trash-bin"></div>
+    </div>
+    <div id="tooltip"></div>
+    <img id="boat" src="img/boat.png" alt="boat" />
+    <script src="nextpage.js"></script>
+  </body>
+</html>

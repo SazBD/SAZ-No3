@@ -1,0 +1,35 @@
+#bubble-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  background: transparent;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -60px;
+  border-radius: 50%;
+  background: rgba(173, 216, 230, 0.35);
+  box-shadow: 0 0 16px 4px rgba(173, 216, 230, 0.18);
+  animation: bubble-rise 2.5s linear forwards;
+}
+
+@keyframes bubble-rise {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  80% {
+    opacity: 0.8;
+    transform: translateY(-80vh) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-110vh) scale(1.2);
+  }
+}
