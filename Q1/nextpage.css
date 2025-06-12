@@ -114,36 +114,6 @@ body {
   z-index: 20;
   pointer-events: none;
 }
-
-#fall-text span {
-  opacity: 0;
-  position: relative;
-  top: -80px;
-  animation: fall-in-char 0.7s cubic-bezier(0.5, 1.8, 0.5, 1) forwards;
-}
-
-#fall-text span:nth-child(1) {
-  animation-delay: 2.5s;
-}
-#fall-text span:nth-child(2) {
-  animation-delay: 2.7s;
-}
-#fall-text span:nth-child(3) {
-  animation-delay: 2.9s;
-}
-#fall-text span:nth-child(4) {
-  animation-delay: 3.1s;
-}
-#fall-text span:nth-child(5) {
-  animation-delay: 3.3s;
-}
-#fall-text span:nth-child(6) {
-  animation-delay: 3.5s;
-}
-#fall-text span:nth-child(7) {
-  animation-delay: 3.7s;
-}
-
 .fall-img {
   width: 4.5rem; /* 放大图片 */
   height: 4.5rem; /* 放大图片 */
@@ -298,5 +268,36 @@ body {
   100% {
     transform: scale(1);
     opacity: 0;
+  }
+}
+
+.danmu {
+  position: fixed;
+  left: 100vw;
+  top: 10vh;
+  font-size: 1.2rem;
+  color: #5dade2;
+  background: rgba(255, 255, 255, 0.4); /* 半透明背景 */
+  border-radius: 24px;
+  padding: 12px 32px;
+  white-space: nowrap;
+  z-index: 9999;
+  pointer-events: auto;
+  user-select: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  animation: danmu-move 12s linear forwards;
+  animation-play-state: running;
+}
+.danmu:hover {
+  background: rgba(255, 255, 255, 0.6); /* 悬停时75%透明 */
+  animation-play-state: paused;
+}
+@keyframes danmu-move {
+  from {
+    left: 100vw;
+  }
+  to {
+    left: -100%;
   }
 }

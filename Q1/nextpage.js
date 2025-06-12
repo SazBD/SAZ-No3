@@ -1,5 +1,3 @@
-const tooltip = document.getElementById("tooltip");
-const garbageItems = document.querySelectorAll(".garbage");
 const btn = document.getElementById("salvage-btn");
 const boat = document.getElementById("boat");
 const ocean = document.getElementById("ocean");
@@ -11,23 +9,9 @@ let offsetX = 0,
 // 记录已消失垃圾数量
 let garbageGoneCount = 0;
 
-// 鼠标移入垃圾时显示信息
+// 只保留拖动相关的事件监听
+const garbageItems = document.querySelectorAll(".garbage");
 garbageItems.forEach((garbage) => {
-  garbage.addEventListener("mouseenter", (e) => {
-    const info = garbage.getAttribute("data-info");
-    tooltip.textContent = info;
-    tooltip.style.display = "block";
-  });
-
-  garbage.addEventListener("mousemove", (e) => {
-    tooltip.style.left = `${e.pageX + 10}px`;
-    tooltip.style.top = `${e.pageY + 10}px`;
-  });
-
-  garbage.addEventListener("mouseleave", () => {
-    tooltip.style.display = "none";
-  });
-
   // 鼠标按下开始拖动
   garbage.addEventListener("mousedown", (e) => {
     dragging = garbage;
@@ -77,6 +61,9 @@ document.addEventListener("mousemove", (e) => {
       dragRect.top < boatMiddleRect.bottom
     ) {
       dragging.style.display = "none";
+      // 获取 data-info 内容作为弹幕
+      const text = dragging.getAttribute("data-info");
+      if (text) createDanmu(text);
       showFireworks();
       garbageGoneCount++;
       // 修改按钮文字
@@ -184,4 +171,26 @@ function bubbleTransitionAndJump(targetUrl) {
   setTimeout(() => {
     window.location.href = targetUrl;
   }, 2600); // 动画时长略大于 bubble-rise
+}
+
+function createDanmu(text) {
+  const danmu = document.createElement("div");
+  danmu.className = "danmu";
+  danmu.textContent = text.replace(/\s+/g, " "); // 去除多余换行
+  // 随机高度（页面靠上部分）
+  danmu.style.top = `${10 + Math.random() * 10}vh`;
+  document.body.appendChild(danmu);
+
+  // 悬停暂停动画
+  danmu.addEventListener("mouseenter", () => {
+    danmu.style.animationPlayState = "paused";
+  });
+  danmu.addEventListener("mouseleave", () => {
+    danmu.style.animationPlayState = "running";
+  });
+
+  // 动画结束移除
+  danmu.addEventListener("animationend", () => {
+    danmu.remove();
+  });
 }

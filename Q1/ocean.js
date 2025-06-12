@@ -170,4 +170,68 @@ function showDialog(img, onClose) {
   setTimeout(startTypeAndAudio, 1000);
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const imgs = document.querySelectorAll(".float-img");
+  let clickedCount = 0;
+  let btnShown = false;
+
+  imgs.forEach((img) => {
+    img.addEventListener("click", function handler() {
+      if (!img.dataset.clicked) {
+        img.dataset.clicked = "1";
+        clickedCount++;
+      }
+      if (clickedCount === 4 && !btnShown) {
+        btnShown = true;
+        showNextBtn();
+      }
+    });
+  });
+
+  function showNextBtn() {
+    const btn = document.createElement("button");
+    btn.id = "salvage-btn";
+    btn.textContent = "继续探索";
+    document.body.appendChild(btn);
+
+    // 只保留控制显示的JS
+    setTimeout(() => {
+      btn.style.opacity = "1";
+      btn.style.pointerEvents = "auto";
+    }, 600);
+
+    btn.onclick = () => {
+      showBubbleTransitionAndJump("seabed.html");
+    };
+  }
+
+  function showBubbleTransitionAndJump(targetUrl) {
+    // 创建气泡遮罩
+    let mask = document.createElement("div");
+    mask.id = "bubble-mask";
+    document.body.appendChild(mask);
+
+    // 生成气泡
+    for (let i = 0; i < 40; i++) {
+      let bubble = document.createElement("div");
+      bubble.className = "bubble";
+      // 随机大小、位置、延迟
+      let size = 20 + Math.random() * 60;
+      bubble.style.width = size + "px";
+      bubble.style.height = size + "px";
+      bubble.style.left = Math.random() * 100 + "vw";
+      bubble.style.background = `rgba(173,216,230,${
+        0.18 + Math.random() * 0.25
+      })`;
+      bubble.style.animationDelay = Math.random() * 0.8 + "s";
+      mask.appendChild(bubble);
+    }
+
+    // 动画后跳转
+    setTimeout(() => {
+      window.location.href = targetUrl;
+    }, 2600);
+  }
+});
+
 addSwingAnimation();
